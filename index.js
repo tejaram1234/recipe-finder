@@ -5,16 +5,13 @@ const mealList = document.getElementById('resultlist');
 const mealDetailsContent = document.querySelector('.content');
 const recipeCloseBtn = document.getElementById('closebtn');
 
-// event listeners
-searchBtn.addEventListener('click', getMealList);
-mealList.addEventListener('click', getMealRecipe);
+searchBtn.addEventListener('click', getList);
+mealList.addEventListener('click', getRecipe);
 recipeCloseBtn.addEventListener('click', () => {
     mealDetailsContent.parentElement.classList.remove('showRecipe');
 });
 
-
-// get meal list that matches with the ingredients
-function getMealList(){
+function getList(){
     let searchInputTxt = document.getElementById('input').value.trim();
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`)
     .then(response => response.json())
@@ -46,7 +43,7 @@ function getMealList(){
 
 
 // get recipe of the meal
-function getMealRecipe(e){
+function getRecipe(e){
     e.preventDefault();
     if(e.target.classList.contains('rbtn')){
         let mealItem = e.target.parentElement.parentElement;
